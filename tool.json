@@ -1,16 +1,47 @@
 {
-  "id": "coolcode-tool-template",
-  "title": "CoolCode Tool Starter",
-  "description": "A browser-only example that trims lines and removes exact duplicates.",
-  "category": "security",
-  "tags": ["text", "lines", "duplicates"],
-  "icon": "scan-search",
-  "url": "/coolcode-tool-template/",
-  "source": "https://github.com/jsdyer/coolcode-tool-template",
+  "id": "inflation-basket",
+  "title": "Inflation Basket",
+  "description": "Compare the change in your own spending basket with official provincial or Canadian inflation over the same months.",
+  "category": "money",
+  "tags": [
+    "inflation",
+    "CPI",
+    "spending",
+    "prices"
+  ],
+  "icon": "shopping-basket",
+  "url": "/inflation-basket/",
+  "source": "https://github.com/jsdyer/inflation-basket",
   "hosting": "project",
   "access": "browser",
   "data_info": {
-    "mode": "local",
-    "detail": "The browser reads the text you paste and compares its lines."
+    "mode": "snapshot",
+    "detail": "Statistics Canada publishes monthly price indexes for eight spending categories and all-items CPI, with separate basket weights.",
+    "cadence": "Monthly",
+    "probes": [
+      {
+        "url": "https://coolcode.ca/inflation-basket/data/status.json",
+        "path": [
+          "retrieved"
+        ],
+        "label": "Source retrieved",
+        "count_at": {
+          "path": [
+            "count"
+          ],
+          "unit": "index observations"
+        }
+      },
+      {
+        "url": "https://coolcode.ca/inflation-basket/data/status.json",
+        "path": [
+          "start"
+        ],
+        "end_path": [
+          "end"
+        ],
+        "label": "Coverage"
+      }
+    ]
   }
 }

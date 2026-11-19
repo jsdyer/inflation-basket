@@ -1,33 +1,3 @@
-<!doctype html>
-<html lang="en-CA">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="{{DESCRIPTION}}">
-  <title>{{TITLE}} · CoolCode</title>
-  <link rel="stylesheet" href="./style.css">
-  <script type="module" src="./app.mjs"></script>
-</head>
-<body data-tool-id="{{TOOL_ID}}">
-  <a class="skip" href="#main">Skip to content</a>
-  <header><a href="https://coolcode.ca/">← CoolCode.ca</a><a href="{{SOURCE_URL}}">Source &amp; instructions ↗</a></header>
-  <main id="main">
-    <p class="eyebrow">Browser tool starter</p>
-    <h1>{{TITLE}}</h1>
-    <p class="intro">{{DESCRIPTION}}</p>
-    <section aria-labelledby="example-title">
-      <h2 id="example-title">Clean a list</h2>
-      <p>Trim spaces, skip blank lines and remove exact duplicates. Capitalization stays distinct.</p>
-      <div class="panels">
-        <div><label for="input">Your lines</label><textarea id="input" rows="10" maxlength="100000" spellcheck="false" placeholder="Paste one item per line"></textarea></div>
-        <div><label for="output">Cleaned lines</label><textarea id="output" rows="10" readonly spellcheck="false"></textarea></div>
-      </div>
-      <div class="actions"><button id="sample" type="button">Load example</button><button id="clear" type="button">Clear</button><button id="copy" type="button" hidden>Copy result</button></div>
-      <p id="status" role="status" aria-live="polite">Paste a list to begin.</p>
-      <noscript><p>This tool needs JavaScript to process your text. The source is available above.</p></noscript>
-    </section>
-    <aside aria-label="Privacy"><strong>Stays on your device.</strong> This example makes no API requests and does not save your text. Reloading clears it.</aside>
-  </main>
-  <footer>Part of <a href="https://coolcode.ca/">the CoolCode collection</a>.</footer>
-</body>
-</html>
+<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{TITLE}} · CoolCode</title><meta name="description" content="{{DESCRIPTION}}"><link rel="stylesheet" href="./style.css"><script type="module" src="./app.mjs"></script></head><body data-tool-id="{{TOOL_ID}}"><a class="skip" href="#main">Skip to comparison</a><header><nav><a href="https://coolcode.ca/">← CoolCode</a><a href="{{SOURCE_URL}}">Code and guide ↗</a></nav><div class="heading"><p class="over">Monthly CPI · Canada and the ten provinces</p><h1>{{TITLE}}</h1><p>{{DESCRIPTION}}</p></div></header><main id="main"><p id="status" role="status" class="meta">Loading the published edition…</p><div id="content" hidden><section aria-label="Comparison controls"><div class="fields"><label>Province or Canada<select id="geo"></select></label><label>Starting month<select id="from"></select></label><label>Ending month<select id="to"></select></label></div></section>
+<section><h2>Your spending mix</h2><p>Enter monthly dollars or relative weights in the same units. The tool normalizes them to shares of your total and holds that starting mix fixed.</p><div id="weights" class="weights"></div><p class="actionrow"><button id="published">Use published weights</button><button id="equal">Equal weights</button><span id="weightnote" class="fine"></span></p></section>
+<section><h2>What changed?</h2><div id="cards" class="kpis" aria-live="polite"></div><p id="summary"></p><div id="legend" class="legend"></div><div id="chart"></div><h3>Contributions to the change</h3><div class="scroll"><table id="parts"></table></div><details><summary>Monthly index history</summary><div class="scroll"><table id="table"></table></div></details><p><button id="download">Download history CSV</button></p></section></div><section class="sources"><h2>Sources and method</h2><p>Monthly index observations are unadjusted for seasonality. Both lines start at 100 in your chosen month. A contribution is a component’s starting share multiplied by its price change. The published all-items CPI uses Statistics Canada’s own basket and linking method. Your entries stay in this browser.</p><div><a href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810000401">Monthly CPI table 18-10-0004-01</a> · <a href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810000701">Basket weights table 18-10-0007-01</a></div></section><noscript>Enable JavaScript to use the comparison controls.</noscript></main></body></html>

@@ -1,21 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cleanLines } from '../web/model.mjs';
-test('trims, removes blanks and preserves first-seen order', () => {
-  assert.deepEqual(cleanLines('  Halifax\nLangley\nHalifax\n\nVancouver  '), {
-    text: 'Halifax\nLangley\nVancouver', count: 3, removed: 1,
-  });
-});
-test('supports Windows and old Mac line endings', () => {
-  assert.equal(cleanLines('a\r\nb\ra').text, 'a\nb');
-});
-test('empty text and whitespace produce an empty result', () => {
-  assert.deepEqual(cleanLines(' \n\t'), { text: '', count: 0, removed: 0 });
-});
-test('preserves case and Unicode', () => {
-  assert.equal(cleanLines('Québec\nquébec\n東京\nQuébec').text, 'Québec\nquébec\n東京');
-});
-test('treats markup as ordinary text', () => {
-  assert.equal(cleanLines('<script>alert(1)</script>\n<script>alert(1)</script>').text, '<script>alert(1)</script>');
-});
-test('rejects non-text input', () => { assert.throws(() => cleanLines(null), TypeError); });
+import {basket,official} from '../web/model.mjs';
+const start=[100,100,100,100,100,100,100,100,100], end=[120,110,100,100,100,100,100,100,113];
+test('starting shares and contribution points',()=>{const r=basket(start,end,[1,3,0,0,0,0,0,0]);assert.ok(Math.abs(r.change-12.5)<1e-8);assert.equal(r.shares[0],25);assert.equal(official(start,end),113);});
+test('missing component and empty basket',()=>{const gap=[null,...end.slice(1)];assert.equal(basket(start,gap,[1,0,0,0,0,0,0,0]).change,null);assert.notEqual(basket(start,gap,[0,1,0,0,0,0,0,0]).change,null);assert.equal(basket(start,end,Array(8).fill(0)),null);});

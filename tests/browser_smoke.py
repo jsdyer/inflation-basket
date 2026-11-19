@@ -1,4 +1,4 @@
-"""Exercise the built starter at a project subpath in Chromium."""
+"""Exercise the published tool at a project subpath in Chromium."""
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -29,22 +29,25 @@ def main():
                 errors = []
                 page.on("pageerror", lambda error: errors.append(str(error)))
                 page.goto(f"http://127.0.0.1:{server.server_port}/example-tool/")
-                page.locator("#sample").click()
-                assert page.locator("#output").input_value() == "Halifax\nLangley\nVancouver"
-                assert "1 duplicate removed" in page.locator("#status").inner_text()
-                page.locator("#input").fill('<img src=x onerror="alert(1)">\n<img src=x onerror="alert(1)">')
-                assert page.locator("#output").input_value() == '<img src=x onerror="alert(1)">'
-                assert page.locator("img").count() == 0
-                page.locator("#clear").click()
-                assert page.locator("#output").input_value() == ""
-                page.locator("#sample").click()
+                page.wait_for_selector("#content:visible")
+                page.select_option("#geo","British Columbia")
+                page.select_option("#from","2025-10")
+                page.select_option("#to","2026-10")
+                for i in range(8):
+                    page.locator(f"#weight-{i}").fill("1" if i == 0 else "0")
+                assert "2.37%" in page.locator(".big").first.inner_text()
+                assert "2.51%" in page.locator(".big").last.inner_text()
+                with page.expect_download():
+                    page.click("#download")
+                page.locator("#published").click()
+                assert page.locator("#parts tbody tr").count()==8
                 page.screenshot(path=str(screenshots / "desktop.png"), full_page=True)
                 page.set_viewport_size({"width": 390, "height": 844})
                 assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
                 page.screenshot(path=str(screenshots / "mobile.png"), full_page=True)
                 assert not errors, errors
                 browser.close()
-            print("Browser checks passed: project subpath, sample, clear, safe text and mobile layout")
+            print("Browser checks passed: project subpath, published values, filters and mobile layout")
         finally:
             server.shutdown()
 

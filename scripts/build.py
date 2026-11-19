@@ -51,6 +51,10 @@ def build(root=ROOT):
     with tempfile.TemporaryDirectory(prefix="coolcode-tool-") as temporary:
         stage = Path(temporary) / "site"
         shutil.copytree(web, stage)
+        import gzip
+        archive = stage / 'data/edition.json.gz'
+        (archive.parent / 'edition.json').write_bytes(gzip.decompress(archive.read_bytes()))
+        archive.unlink()
         index = stage / "index.html"
         page = index.read_text(encoding="utf-8")
         for token, key in {"TITLE": "title", "DESCRIPTION": "description", "TOOL_ID": "id", "SOURCE_URL": "source"}.items():
