@@ -40,3 +40,7 @@ Public GitHub repositories can have scheduled workflows disabled after 60 days o
 
 The schedule guard remains a mitigation, not a scheduling guarantee: scheduled runs can be delayed or dropped. The independent [CoolCode refresh watchdog](https://github.com/jsdyer/jsdyer.github.io/blob/main/services/refresh-watchdog/README.md) is maintained in GitHub and reads the centrally generated [workflow and freshness registry](https://github.com/jsdyer/jsdyer.github.io/tree/main/data/operations). An installed watchdog downloads registry updates; confirm its service report to verify that the private server has adopted them. The guard does not collect data, create dummy commits or change source/check timestamps. Successful collection and published data freshness remain separate from watchdog service health.
 <!-- /schedule-reliability -->
+
+## Ready-to-use example
+
+[What Was $100 in 1970 Worth in Canada?](https://coolcode.ca/inflation-basket/1970-dollars.html) opens this scenario in the same tool. Compare a $100 purchase in 1970 with the latest published Canadian CPI. The result uses the 1970 annual average and labels the month used at the other end. Change the amount, years or province to check another purchase.

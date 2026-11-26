@@ -2,11 +2,12 @@ import {convertDollars} from './model.mjs';
 const $=id=>document.getElementById(id);
 const currency=value=>new Intl.NumberFormat('en-CA',{style:'currency',currency:'CAD',maximumFractionDigits:2}).format(value);
 let history;
+const defaultYear = document.body.dataset.useCase === '1970-dollars' ? '1970' : '1962';
 function endpoint(region,value){return value==='latest'?{label:history.latest_month[region].date+' monthly CPI',index:history.latest_month[region].index}: {label:value+' full-year average',index:history.annual[region][value]?.index};}
 function choices(){const region=$('dollar-geo').value,years=Object.keys(history.annual[region]).sort(),oldFrom=$('dollar-from').value,oldTo=$('dollar-to').value;
  for(const id of ['dollar-from','dollar-to']){const list=$(id);list.replaceChildren(...years.map(y=>new Option(y+' · full year',y)));}
  $('dollar-to').append(new Option('Latest published month · '+history.latest_month[region].date,'latest'));
- $('dollar-from').value=years.includes(oldFrom)?oldFrom:years.includes('1962')?'1962':years[0];
+ $('dollar-from').value=years.includes(oldFrom)?oldFrom:years.includes(defaultYear) ? defaultYear : years[0];
  $('dollar-to').value=oldTo==='latest'||years.includes(oldTo)?oldTo:'latest';calculate();
 }
 function calculate(){const region=$('dollar-geo').value,a=endpoint(region,$('dollar-from').value),b=endpoint(region,$('dollar-to').value),amount=$('dollar-amount').valueAsNumber;
