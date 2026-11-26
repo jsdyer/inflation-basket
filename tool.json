@@ -1,13 +1,15 @@
 {
   "id": "inflation-basket",
   "title": "Inflation Basket",
-  "description": "Compare the change in your own spending basket with official provincial or Canadian inflation over the same months.",
+  "description": "Convert historical Canadian dollars with CPI since 1914, or compare your spending basket with provincial inflation.",
   "category": "money",
   "tags": [
     "inflation",
     "CPI",
     "spending",
-    "prices"
+    "prices",
+    "historical dollars",
+    "purchasing power"
   ],
   "icon": "shopping-basket",
   "url": "/inflation-basket/",
@@ -16,7 +18,7 @@
   "access": "browser",
   "data_info": {
     "mode": "snapshot",
-    "detail": "Statistics Canada publishes monthly price indexes for eight spending categories and all-items CPI, with separate basket weights.",
+    "detail": "Statistics Canada monthly all-items CPI supplies complete-year dollar comparisons, alongside eight spending categories and published basket weights.",
     "cadence": "Monthly",
     "probes": [
       {
