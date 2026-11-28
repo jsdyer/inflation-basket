@@ -8,6 +8,7 @@ import shutil
 import tempfile
 from urllib.parse import urlsplit
 
+from rent import render_example
 from search_metadata import add_search_metadata
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -55,10 +56,13 @@ def build(root=ROOT):
         shutil.copytree(web, stage)
         import gzip
         archive = stage / 'data/edition.json.gz'
-        (archive.parent / 'edition.json').write_bytes(gzip.decompress(archive.read_bytes()))
+        edition = gzip.decompress(archive.read_bytes())
+        (archive.parent / 'edition.json').write_bytes(edition)
+        snapshot = json.loads(edition)
         archive.unlink()
         index = stage / "index.html"
         page = index.read_text(encoding="utf-8")
+        page = render_example(page, snapshot["rent"], snapshot["months"][-1])
         for token, key in {"TITLE": "title", "DESCRIPTION": "description", "TOOL_ID": "id", "SOURCE_URL": "source"}.items():
             placeholder = "{{" + token + "}}"
             if placeholder not in page:

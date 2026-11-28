@@ -1,7 +1,7 @@
 {
   "id": "inflation-basket",
   "title": "Inflation Basket",
-  "description": "Convert historical Canadian dollars with CPI since 1914, or compare your spending basket with provincial inflation.",
+  "description": "Convert historical Canadian dollars, compare a spending basket with provincial inflation, or look up rental inflation in Halifax and Nova Scotia.",
   "category": "money",
   "tags": [
     "inflation",
@@ -9,7 +9,10 @@
     "spending",
     "prices",
     "historical dollars",
-    "purchasing power"
+    "purchasing power",
+    "rent",
+    "Halifax",
+    "Nova Scotia"
   ],
   "icon": "shopping-basket",
   "url": "/inflation-basket/",
@@ -18,7 +21,7 @@
   "access": "browser",
   "data_info": {
     "mode": "snapshot",
-    "detail": "Statistics Canada monthly all-items CPI supplies complete-year dollar comparisons, alongside eight spending categories and published basket weights.",
+    "detail": "Statistics Canada supplies monthly all-items and rental CPI, eight spending categories and published basket weights.",
     "cadence": "Monthly",
     "probes": [
       {

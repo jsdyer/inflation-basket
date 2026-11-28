@@ -1,4 +1,5 @@
 import {el,node,edition,choices,cards,table,chart,pretty,exportCsv,fail} from './ui.mjs';
+import {startRent} from './rent.mjs';
 import {basket,official} from './model.mjs';
 let data,rows=[];
 const heads=['Month','Your basket index','Published all-items index'];
@@ -43,5 +44,6 @@ async function start(){
   el('from').onchange=el('to').onchange=update;
   el('download').onclick=()=>exportCsv(heads,rows,'inflation-basket-'+el('geo').value+'-'+el('to').value);
   el('content').hidden=false;preset();
+  startRent(data.rent);
 }
 start().catch(fail);

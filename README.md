@@ -3,7 +3,7 @@
 [Open Inflation Basket](https://coolcode.ca/inflation-basket/)
 
 <!-- coolcode:guide -->
-Convert a historical Canadian dollar amount using all-items CPI, with complete annual averages from 1914 for Canada and separately labelled latest-month comparisons. The original spending-basket calculator still compares eight major categories from 2002 onward and shows their contributions. Both calculations use dated official observations; personal amounts stay local.
+Convert a historical Canadian dollar amount using all-items CPI, with complete annual averages from 1914 for Canada and separately labelled latest-month comparisons. The original spending-basket calculator still compares eight major categories from 2002 onward and shows their contributions. Compare two months of rental inflation in Halifax and Nova Scotia, with both endpoint indexes and direct links to the matching official series. Personal amounts stay local.
 <!-- /coolcode:guide -->
 
 Choose Canada or one of its ten provinces and two months from January 2002 onward. The calculator opens with the latest published reference-period basket weights for that geography. Enter your own monthly spending or percentages to customize the eight major components. The published preset bears its basket year and can be applied to historical periods as a hypothetical fixed spending mix. The equal-weight control assigns the same share to every category. Changing region keeps custom inputs. No personal spending is saved or sent to a server.
@@ -20,6 +20,12 @@ The separate historical-dollar panel uses all-items CPI before the eight-compone
 Equivalent amount = original amount × target CPI ÷ source CPI. Each annual index is the arithmetic mean of **all twelve published monthly indexes**, retained at calculation precision. These derived means can differ slightly from rounded annual indexes published in another table. A missing month excludes that year; the current incomplete year is never treated as a complete annual average. The latest-month option states its exact YYYY-MM and uses that one monthly index. It does not claim to be today's price.
 
 The JSON export records both endpoint indexes, period meanings, geography, source and check date. This is consumer purchasing-power context, not investment performance, a company valuation adjustment or a city-to-city cost comparison. No amount is uploaded or automatically saved.
+
+## Halifax and Nova Scotia rental inflation
+
+[Compare rental costs since January 2015](https://coolcode.ca/inflation-basket/#rental-inflation). Choose any two available months. The city’s **Rented accommodation** index includes tenant expenses beyond rent, and the provincial **Rent** series measures rent alone. The percentage change for each series is 100 × (ending index ÷ starting index − 1). An index measures price change over time. Asking rent and average rent in dollars require different sources.
+
+Table 18-10-0004-01 publishes Halifax (v41692860) from January 1971 and Nova Scotia (v41691548) from September 1978. Each result links to its exact geography, category and selected period in that table. A missing endpoint is marked unavailable. The example uses January 2015 through the latest published month and is included in the built HTML. The regular monthly download also refreshes the rental series, with checks for geography, category, units, duplicate observations and coverage.
 
 ### Expand or customize
 

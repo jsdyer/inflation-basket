@@ -6,3 +6,7 @@
 .task-links a { color: inherit; text-decoration: underline; text-underline-offset: .18em; font: inherit; }
 .task-links a:first-child { font-weight: bold; }
 h1 { overflow-wrap: anywhere; }
+
+#rent-controls[hidden], #rent-results[hidden] { display: none; }
+#rent-status:empty { display: none; }
+.heading [data-coolcode-commitments] { font-size: .88rem; }

@@ -1,5 +1,6 @@
 """Extract eight major CPI components and corresponding published basket weights."""
 from source import rows, publish
+from rent import SERIES as RENT_SERIES, collect as collect_rent, validate as validate_rent
 from history import add_observation,build_history,validate_history,publish_history
 
 REGIONS = ('Canada','British Columbia','Nova Scotia','Alberta','Saskatchewan','Manitoba','Ontario','Quebec','New Brunswick','Prince Edward Island','Newfoundland and Labrador')
@@ -10,10 +11,12 @@ def read_table(code):
         if len(row)==len(head): yield dict(zip(head,row))
 def main():
     series={g:{} for g in REGIONS}
+    rent={vector:{} for vector in RENT_SERIES}
     count=0
     historical={g:{} for g in REGIONS}
     for r in read_table('18100004'):
         add_observation(historical,r)
+        collect_rent(rent,r)
         g=r['GEO']; cat=r['Products and product groups']; date=r['REF_DATE']
         if g not in series or cat not in CATEGORIES or date < '2002-01' or not r['VALUE']: continue
         if r['UOM']!='2002=100' or r['SCALAR_FACTOR']!='units':raise ValueError('Unexpected CPI base')
@@ -34,8 +37,9 @@ def main():
         if len(series[g])<240:raise ValueError(f'Truncated region {g}')
     months=sorted(series['Canada'])
     if not all(series[g].get(months[-1]) and None not in series[g][months[-1]] for g in REGIONS):raise ValueError('Incomplete final month')
+    validate_rent(rent, months[-1])
     dollars=build_history(historical);validate_history(dollars)
-    publish({'regions':REGIONS,'categories':CATEGORIES,'months':months,'series':series,'weights':current},
+    publish({'regions':REGIONS,'categories':CATEGORIES,'months':months,'series':series,'weights':current,'rent':rent},
             dict(start=months[0],end=months[-1],count=count))
     publish_history(dollars)
 if __name__=='__main__': main()
